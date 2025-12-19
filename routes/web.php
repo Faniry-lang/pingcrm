@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\DashboardController;
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;

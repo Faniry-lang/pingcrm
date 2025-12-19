@@ -22,6 +22,7 @@
           <tr class="text-left font-bold">
             <th class="pb-4 pt-6 px-6">Name</th>
             <th class="pb-4 pt-6 px-6">Slug</th>
+            <th class="pb-4 pt-6 px-6">Products</th>
             <th class="pb-4 pt-6 px-6">Active</th>
             <th class="pb-4 pt-6 px-6" colspan="2">Actions</th>
           </tr>
@@ -40,6 +41,9 @@
               </Link>
             </td>
             <td class="border-t px-6 py-4">
+              <span class="text-gray-700">{{ category.products_count ?? 0 }}</span>
+            </td>
+            <td class="border-t px-6 py-4">
               <span v-if="category.is_active" class="text-green-600">Yes</span>
               <span v-else class="text-gray-500">No</span>
             </td>
@@ -50,7 +54,7 @@
             </td>
           </tr>
           <tr v-if="categories.data.length === 0">
-            <td class="px-6 py-4 border-t" colspan="4">No categories found.</td>
+            <td class="px-6 py-4 border-t" colspan="5">No categories found.</td>
           </tr>
         </tbody>
       </table>
