@@ -7,6 +7,8 @@ use App\Models\Contact;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\ProductSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,5 +38,8 @@ class DatabaseSeeder extends Seeder
             ->each(function ($contact) use ($organizations) {
                 $contact->update(['organization_id' => $organizations->random()->id]);
             });
+
+        $this->call(CategorySeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }

@@ -14,8 +14,13 @@
         <svg class="shrink-0 ml-4 mr-2 w-4 h-4 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z" /></svg>
         <div v-if="$page.props.flash.error" class="py-4 text-white text-sm font-medium">{{ $page.props.flash.error }}</div>
         <div v-else class="py-4 text-white text-sm font-medium">
-          <span v-if="Object.keys($page.props.errors).length === 1">There is one form error.</span>
-          <span v-else>There are {{ Object.keys($page.props.errors).length }} form errors.</span>
+          <div v-if="errorMessages.length === 1">{{ errorMessages[0] }}</div>
+          <div v-else>
+            <div>There are {{ errorMessages.length }} form errors.</div>
+            <ul class="mt-2 list-disc list-inside">
+              <li v-for="(m, i) in errorMessages" :key="i">{{ m }}</li>
+            </ul>
+          </div>
         </div>
       </div>
       <button type="button" class="group mr-2 p-2" @click="show = false">
@@ -31,6 +36,12 @@ export default {
     return {
       show: true,
     }
+  },
+  computed: {
+    errorMessages() {
+      const errs = this.$page?.props?.errors || {}
+      return Object.keys(errs).reduce((acc, key) => acc.concat(errs[key] || []), [])
+    },
   },
   watch: {
     '$page.props.flash': {

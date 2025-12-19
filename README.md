@@ -55,7 +55,7 @@ Run database migrations:
 php artisan migrate
 ```
 
-Run database seeder:
+Run database seeder:all
 
 ```sh
 php artisan db:seed
